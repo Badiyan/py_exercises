@@ -32,5 +32,11 @@ if __name__ == "__main__":
     else:
         odd_check(range(first_number, last_number))
     print(
-        '{}On the list from {} to {} exists next odd numbers: \n {}{}'.format(CGRN,first_number,last_number,odd_numbers,CEND)
+        '{сolor}On the list from {first_number} to {last_number} exists next odd numbers: \n {odd_numbers}{colorend}'.format(
+            сolor = CGRN,
+            first_number = first_number,
+            last_number = last_number,
+            odd_numbers = odd_numbers,
+            colorend = CEND
+        )
     )
