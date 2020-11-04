@@ -1,79 +1,55 @@
+
+
+
+
 CRED = '\033[31m'
 CGRN = '\033[32m'
 CEND = '\033[0m'
+c_green = (CGRN,CEND)
+c_red = (CRED,CEND)
+
+def colorize(value = 'value not defined',color = c_red):
+    return str(value).join(color)
 
 
-#def printer(msg = str, colors = int, f_value, s_value ): # 1 - green 2 - red 3 - both
-#    print()
 
+def printer(msg = 'Message not defined', type = 'error',  *args):
+    if len(args) == 0:
+        if type == 'info':
+            print(
+                colorize(msg,c_green)
+            )
+        elif type == 'error':
+            print(
+                colorize(msg,c_red)
+            )
+        else:
+            print(msg)
+    elif len(args) == 1:
+        print(msg, colorize(args[0],c_green))
+    elif len(args) > 1:
+        first_v = colorize(args[0],c_green)
+        second_v = colorize(args[1],c_green)
+        extra_msg = (str(second_v)+' in '+str(first_v))
+        print(msg,' ',str(extra_msg))
 
 def checker(first_input,second_input):
     if type(first_input) is int and type(second_input) is int: # int checking
-        print(
-            'Both values is {c_grn}int{c_end} type'.format(
-                c_grn = CGRN,
-                c_end = CEND
-            )
-        )
+        printer('Both values have type :', 'info', 'int')
         if first_input == second_input:
-            print(
-                'Both numbers is = {c_grn}{value}{c_end}'.format(
-                    c_grn = CGRN,
-                    c_end = CEND,
-                    value = first_input
-                )
-            )
+            printer('Both numbers are:', 'info', first_input)
         elif first_input > second_input:
-            print(
-                'Bigger is number {c_grn}{value}{c_end}'.format(
-                    c_grn = CGRN,
-                    c_end = CEND,
-                    value = first_input
-                )
-            )
+            printer('The bigger number is:', 'info', first_input)
         else:
-            print(
-                'Bigger is number {c_grn}{value}{c_end}'.format(
-                    c_grn = CGRN,
-                    c_end = CEND,
-                    value = second_input
-                )
-            )
+            printer('The bigger number is:', 'info', second_input)
     elif type(first_input) is str and type(second_input) is str: # str checking
-        print(
-            'Both values is {c_grn}str{c_end} type'.format(
-                c_grn=CGRN,
-                c_end=CEND
-            )
-        )
+        printer('Both values have type :', 'info', 'str')
         if first_input.find(second_input) >= 0:
-            print(
-                'String {c_grn}{second_value}{c_end} is substring of {c_grn}{first_value}{c_end}'.format(
-                    first_value = first_input,
-                    second_value = second_input,
-                    c_grn=CGRN,
-                    c_end=CEND
-                )
-            )
+            printer('Substring finded', 'info', first_input,second_input)
         else:
-            print(
-                'String {c_grn}{second_value}{c_end} is {c_red}not{c_end} substring of {c_grn}{first_value}{c_end}'.format(
-                    first_value = first_input,
-                    second_value = second_input,
-                    c_grn = CGRN,
-                    c_red = CRED,
-                    c_end = CEND
-                )
-            )
+            printer('No substrings finded', 'error')
     else:
-        print(
-            '{c_red}Error values are unsuitable on this task!{c_end}'.format(
-                first_value=first_input,
-                second_value=second_input,
-                c_red=CRED,
-                c_end=CEND
-            )
-        )
+        printer('Error values are unsuitable on this task!', 'error')
 
 def get_value(input_value):
     in_value = input(input_value)
