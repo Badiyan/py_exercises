@@ -3,10 +3,10 @@ CRED = '\033[31m'
 CGRN = '\033[32m'
 CEND = '\033[0m'
 
-def get_value(msg):
+def get_value(input_value):
     while True:
         try:
-            value = int(input(msg))
+            value = int(input(input_value)) # possible also use isnumeric() func for checking
         except:
             print('{}Input integer digit only!{}'.format(CRED,CEND))
             continue
@@ -23,8 +23,8 @@ def odd_check(numbers):
     return odd_numbers
 
 if __name__ == "__main__":
-    first_number = get_value('Input first number:')
-    last_number = get_value('Input last number:')
+    first_number = get_value('Input first number [a] :')
+    last_number = get_value('Input last number [b] :')
     if first_number == last_number:
         odd_check(range(first_number,first_number+1))
     elif first_number > last_number:

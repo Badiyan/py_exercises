@@ -1,7 +1,3 @@
-
-
-
-
 CRED = '\033[31m'
 CGRN = '\033[32m'
 CEND = '\033[0m'
@@ -10,8 +6,6 @@ c_red = (CRED,CEND)
 
 def colorize(value = 'value not defined',color = c_red):
     return str(value).join(color)
-
-
 
 def printer(msg = 'Message not defined', type = 'error',  *args):
     if len(args) == 0:
@@ -60,11 +54,7 @@ def get_value(input_value):
     finally :
         return out_value
 
-
-
-
-
 if __name__ == "__main__":
-    f_number = get_value('Input first value:')
-    l_number = get_value('Input last value:')
+    f_number = get_value('Input first value [a] :')
+    l_number = get_value('Input last value [b] :')
     checker(f_number, l_number)
